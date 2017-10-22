@@ -1,6 +1,9 @@
 class WordReader
+  def read_from_args # Ввод слова с консоли
+    ARGV[0]
+  end
 
-  def read_from_file(file_name)
+  def read_from_file(file_name) # Случайное слово из файла
     begin
       f = File.new(file_name, 'r:UTF-8')
       lines = f.readlines # Читаем массив всех строк

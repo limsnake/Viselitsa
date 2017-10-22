@@ -9,12 +9,14 @@ class Game
     @status = 0 # Хранит статус игры
   end
 
-  def get_letters (slovo)
-    if slovo == nil || slovo == ""
+  def get_letters(slovo)
+
+    if slovo.nil? || slovo == ""
       abort "Вы не ввели слово для игры"
+    else
+      slovo = UnicodeUtils.upcase(slovo.encode('UTF-8'))
     end
 
-    slovo = UnicodeUtils.upcase(slovo.encode('UTF-8'))
     slovo.split("")
   end
 

@@ -9,10 +9,13 @@ require_relative "word_reader.rb"
 current_path = './' + File.dirname(__FILE__)
 
 printer = ResultPrinter.new
-
 reader = WordReader.new
 
-slovo = reader.read_from_file(current_path + "/data/word.txt")
+if reader.read_from_args == nil
+  slovo = reader.read_from_file(current_path + "/data/word.txt")
+else
+  slovo = reader.read_from_args
+end
 
 game = Game.new(slovo)
 
