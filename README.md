@@ -5,7 +5,7 @@
 
 
 ### Требования
-[RubyInstaller](https://rubyinstaller.org/downloads/)
+Программа написана на [Ruby](https://www.ruby-lang.org/ru/downloads/). Так же в процессе игры понадобится использовать [gem unicode_utils](https://github.com/lang/unicode_utils)
 
 ### Принцип работы
 Пользователь должен отгадать слово буква за буквой. Ему даётся 7 попыток, каждая неудачная попытка пририсовывает деталь 
