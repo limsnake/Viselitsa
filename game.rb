@@ -1,6 +1,4 @@
-
 class Game
-
   def initialize(slovo)
     @letters = get_letters(slovo)
     @errors = 0
@@ -10,7 +8,6 @@ class Game
   end
 
   def get_letters(slovo)
-
     if slovo.nil? || slovo == ""
       abort "Вы не ввели слово для игры"
     else
@@ -20,9 +17,8 @@ class Game
     slovo.split("")
   end
 
-# 1. Попросить букву c консоли
-# 2. Проверить результат
-
+  # 1. Попросить букву c консоли
+  # 2. Проверить результат
   def ask_next_letter
     puts "\nВведите следующую букву"
 
@@ -38,7 +34,6 @@ class Game
   # Вынесем пунтк 2 в отдельный метод
   # 1. Должен проверить наличие букв в загаданном слове
   # 2. Или среди уже названных букв (массивы @good_letters/bad_letters)
-
   def next_step(bukva)
     bukva = UnicodeUtils.upcase(bukva)
 
@@ -63,7 +58,6 @@ class Game
     end
 
     if @letters.include?(bukva) || @letters.include?(bukva_x)
-
       if bukva_x == "й" || bukva_x == "ё"
         @good_letters << bukva
       else

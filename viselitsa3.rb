@@ -1,7 +1,4 @@
 require "unicode_utils/upcase"
-
-
-
 require_relative "game.rb"
 require_relative "result_printer.rb"
 require_relative "word_reader.rb"
