@@ -1,3 +1,4 @@
+# Класс WordReader, отвечающий за чтение слова для игры.
 class WordReader
   def read_from_args # Ввод слова с консоли
     ARGV[0]

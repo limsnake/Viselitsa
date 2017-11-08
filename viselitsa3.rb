@@ -1,22 +1,25 @@
-require "unicode_utils/upcase"
-require_relative "game.rb"
-require_relative "result_printer.rb"
-require_relative "word_reader.rb"
+
+require_relative "lib/game.rb"
+require_relative "lib/result_printer.rb"
+require_relative "lib/word_reader.rb"
 
 current_path = './' + File.dirname(__FILE__)
 
-printer = ResultPrinter.new
+VERSION = "Игра Виселица, версия 4\n\n"
+
 reader = WordReader.new
 
 if reader.read_from_args == nil
-  slovo = reader.read_from_file(current_path + "/data/word.txt")
+  word = reader.read_from_file(current_path + "/data/word.txt")
 else
-  slovo = reader.read_from_args
+  word = reader.read_from_args
 end
 
-game = Game.new(slovo)
+game = Game.new(word)
+game.version = VERSION
+printer = ResultPrinter.new(game)
 
-while game.status == 0 do
+while game.in_progress? do
   printer.print_status(game)
   game.ask_next_letter
 end

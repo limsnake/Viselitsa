@@ -1,17 +1,18 @@
+# Класс ResultPrinter, печатающий состояние и результаты игры.
 class ResultPrinter
-  def initialize
+  def initialize(game) # Конструктор должен знать для какой игры он создает результаты
     @status_image = []
 
     current_path = File.dirname(__FILE__)
     counter = 0
 
-    while counter <= 7 do
-      file_name = current_path + "/image/#{counter}.txt"
+    while counter <= game.max_errors do
+      file_name = current_path + "/../image/#{counter}.txt" #/../ поднимаемся на директорую выше
 
       begin
         f = File.new(file_name, 'r:UTF-8')
         @status_image << f.read
-        f. close
+        f.close
       rescue SystemCallError
         @status_image << "\n[ Изображение не найдено ]\n"
       end
@@ -22,22 +23,20 @@ class ResultPrinter
 
   def print_status(game)
     cls # Очистка экрана
+    puts game.version
     puts "Слово: #{get_word_for_print(game.letters, game.good_letters)}"
     puts "Ошибки: #{game.bad_letters.join(", ")}"
 
     print_viselitsa(game.errors)
 
-    if game.status == -1
-      puts
-      puts "Вы проиграли :("
+    if game.lost?
+      puts "\nВы проиграли :(\n"
       puts "Загаданное слово было: " + game.letters.join("")
       puts
-    elsif game.status == 1
-      puts
-      puts "Поздравляем, вы выиграли!"
-      puts
+    elsif game.won?
+      puts "\nПоздравляем, вы выиграли!\n\n"
     else
-      puts "У вас осталось ошибок: " + (7 - game.errors).to_s
+      puts "У вас осталось ошибок: #{game.errors_left}"
     end
   end
 
